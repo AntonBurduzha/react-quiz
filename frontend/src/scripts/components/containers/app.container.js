@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AppView from '../views/app.view'
 
 export default class App extends Component {
   constructor(){
@@ -7,7 +8,6 @@ export default class App extends Component {
     this.handleLoginInput = this.handleLoginInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
-    this.handleSecretResponse = this.handleSecretResponse.bind(this);
     this.state = {
       login: '',
       mail: '',
@@ -45,26 +45,15 @@ export default class App extends Component {
     });
   }
 
-  handleSecretResponse(){
-    fetch('/secret', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `JWT ${this.state.token}`
-      }
-    }).then(response => response.json()).then(result => console.log(result));
-  }
-
   render(){
     return (
       <div>
-        <h2 className="route1">Creating new user</h2>
-        <input onChange={this.handleLoginInput} type="text" placeholder="login"/>
-        <input onChange={this.handleEmailInput} type="text" placeholder="email"/>
-        <input onChange={this.handlePasswordInput} type="text" placeholder="password"/>
-        <button onClick={this.handleResponse}>Get token</button>
-        <button onClick={this.handleSecretResponse}>Get secret</button>
-        <p>{this.state.token}</p>
+        <AppView
+          handleLoginInput={this.handleLoginInput}
+          handleEmailInput={this.handleEmailInput}
+          handlePasswordInput={this.handlePasswordInput}
+          handleResponse={this.handleResponse}
+          token={this.state.token}/>
       </div>
     )
   }

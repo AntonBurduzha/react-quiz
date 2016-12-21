@@ -1,32 +1,22 @@
-var passport = require("passport");
-var passportJWT = require("passport-jwt");
-var users = require("./users.js");
 var cfg = require("./config.js");
-var ExtractJwt = passportJWT.ExtractJwt;
-var Strategy = passportJWT.Strategy;
-var params = {
-  secretOrKey: cfg.jwtSecret,
-  jwtFromRequest: ExtractJwt.fromAuthHeader()
-};
+var passportJWT = require("passport-jwt");
+let UserData = require('./models/login.schema');
 
-module.exports = function() {
-  var strategy = new Strategy(params, function(payload, done) {
-    var user = users[payload.id] || null;
-    if (user) {
-      return done(null, {
-        id: user.id
-      });
+var ExtractJwt = passportJWT.ExtractJwt;
+var JwtStrategy = passportJWT.Strategy;
+var jwtOptions = {};
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
+jwtOptions.secretOrKey = cfg.secretOrKey;
+
+let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+  console.log('payload received', jwt_payload);
+  UserData.findOne({login: jwt_payload.login}).then(userData => {
+    if (userData) {
+      next(null, userData);
     } else {
-      return done(new Error("User not found"), null);
+      next(null, false);
     }
   });
-  passport.use(strategy);
-  return {
-    initialize: function() {
-      return passport.initialize();
-    },
-    authenticate: function() {
-      return passport.authenticate("jwt", cfg.jwtSession);
-    }
-  };
-};
+});
+
+module.exports = strategy;
