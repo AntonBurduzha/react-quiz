@@ -9,8 +9,8 @@ export default class AppView extends Component {
         <input onChange={this.props.handleEmailInput} type="text" placeholder="email"/>
         <input onChange={this.props.handlePasswordInput} type="text" placeholder="password"/>
         <button onClick={this.props.handleResponse}>Get token</button>
-        <button onClick={this.props.handleSecretResponse}>Get secret</button>
         <p>{this.props.token}</p>
+        <p>{this.props.checkedToken}</p>
       </div>
     )
   }

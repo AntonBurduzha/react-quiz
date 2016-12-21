@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { setToken, checkToken } from '../../actions/login.actions'
 import AppView from '../views/app.view'
 
-export default class App extends Component {
+class AppContainer extends Component {
   constructor(){
     super();
     this.handleResponse = this.handleResponse.bind(this);
@@ -11,8 +13,7 @@ export default class App extends Component {
     this.state = {
       login: '',
       mail: '',
-      password: '',
-      token: ''
+      password: ''
     };
   }
   handleEmailInput(e){
@@ -33,15 +34,17 @@ export default class App extends Component {
       },
       body: `mail=${this.state.mail}&login=${this.state.login}&password=${this.state.password}`
     }).then(response => response.json()).then(result => {
-      this.setState({token: result.token});
-      console.log(result);
-      fetch('/secret', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': `JWT ${this.state.token}`
-        }
-      }).then(response => response.json()).then(result => console.log(result));
+      this.props.setToken(result);
+      if(result.message === 'ok'){
+        fetch('/secret', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `JWT ${this.props.tokenChecking.token}`
+          }
+        }).then(response => response.json())
+          .then(result => this.props.checkToken(result));
+      }
     });
   }
 
@@ -53,8 +56,27 @@ export default class App extends Component {
           handleEmailInput={this.handleEmailInput}
           handlePasswordInput={this.handlePasswordInput}
           handleResponse={this.handleResponse}
-          token={this.state.token}/>
+          token={this.props.tokenChecking.token}
+          checkedToken={this.props.tokenChecking.message}/>
       </div>
     )
   }
 }
+
+/*AppContainer.propTypes = {
+  token: PropTypes.String.isRequired,
+  checkedToken: PropTypes.String.isRequired
+};*/
+
+const mapStateToProps = function(state) {
+  return {
+    tokenChecking: state.loginState
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  setToken: (tokenChecking) => setToken(dispatch, tokenChecking),
+  checkToken: (tokenChecking) => checkToken(dispatch, tokenChecking)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

@@ -53,6 +53,7 @@ if (prod) {
       warnings: false
     }
   }));
+  config.watch = null;
   config.devtool = null;
 } else {
   config.devtool = 'source-map';

@@ -7,7 +7,8 @@ router.post('/login', loginUser);
 router.get('/secret', passport.authenticate('jwt', { session: false }), checkSecret);
 
 function checkSecret(req, res) {
-  res.json({message: "Success! You can not see this without a token"});
+  let msg = {message: "Success! You can not see this without a token"};
+  res.json(msg);
 }
 
 /*app.post('/login', (req, res) => {
