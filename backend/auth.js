@@ -10,7 +10,7 @@ jwtOptions.secretOrKey = cfg.secretOrKey;
 
 let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log('payload received', jwt_payload);
-  UserData.findOne({login: jwt_payload.login}).then(userData => {
+  UserData.findOne({mail: jwt_payload.mail}).then(userData => {
     if (userData) {
       next(null, userData);
     } else {

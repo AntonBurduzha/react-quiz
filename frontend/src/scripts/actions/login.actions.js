@@ -1,5 +1,12 @@
 import AppActionTypes from './action.types'
 
+const checkUniqueUser = (dispatch, unique) => {
+  dispatch( {
+    type: AppActionTypes.CHECK_UNIQUE_USER,
+    unique
+  });
+};
+
 const setToken = (dispatch, tokenChecking) => {
   dispatch( {
     type: AppActionTypes.SET_TOKEN,
@@ -16,5 +23,6 @@ const checkToken = (dispatch, tokenChecking) => {
 
 export {
   setToken,
-  checkToken
+  checkToken,
+  checkUniqueUser
 };

@@ -1,23 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { setToken, checkToken } from '../../actions/login.actions'
-import AppView from '../views/app.view'
+import AuthView from '../views/auth.view'
 
-class AppContainer extends Component {
+class AuthContainer extends Component {
   constructor(){
     super();
     this.handleResponse = this.handleResponse.bind(this);
     this.handleLoginInput = this.handleLoginInput.bind(this);
-    this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
     this.state = {
       login: '',
-      mail: '',
       password: ''
     };
-  }
-  handleEmailInput(e){
-    this.setState({mail: e.target.value});
   }
   handleLoginInput(e){
     this.setState({login: e.target.value});
@@ -32,7 +27,7 @@ class AppContainer extends Component {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: `mail=${this.state.mail}&login=${this.state.login}&password=${this.state.password}`
+      body: `login=${this.state.login}&password=${this.state.password}`
     }).then(response => response.json()).then(result => {
       this.props.setToken(result);
       if(result.message === 'ok'){
@@ -51,9 +46,8 @@ class AppContainer extends Component {
   render(){
     return (
       <div>
-        <AppView
+        <AuthView
           handleLoginInput={this.handleLoginInput}
-          handleEmailInput={this.handleEmailInput}
           handlePasswordInput={this.handlePasswordInput}
           handleResponse={this.handleResponse}
           token={this.props.tokenChecking.token}
@@ -63,10 +57,9 @@ class AppContainer extends Component {
   }
 }
 
-/*AppContainer.propTypes = {
-  token: PropTypes.String.isRequired,
-  checkedToken: PropTypes.String.isRequired
-};*/
+AuthContainer.propTypes = {
+  tokenChecking: PropTypes.object.isRequired
+};
 
 const mapStateToProps = function(state) {
   return {
@@ -79,4 +72,4 @@ const mapDispatchToProps = (dispatch) => ({
   checkToken: (tokenChecking) => checkToken(dispatch, tokenChecking)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
