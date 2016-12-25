@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import {browserHistory} from 'react-router'
 import { connect } from 'react-redux'
+import {setHomePageHeigth, clearInputs, showEmptyInputs} from '../../api/common.api'
+import {getCurrentUser, createNewUser} from '../../api/login.api'
 import { checkUniqueUser } from '../../actions/login.actions'
 import RegisterView from '../views/register.view'
 
@@ -10,10 +13,13 @@ class RegisterContainer extends Component {
     this.handleLoginInput = this.handleLoginInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.changeWrongFields = this.changeWrongFields.bind(this);
+    this.clearWrongInputs = this.clearWrongInputs.bind(this);
     this.state = {
       login: '',
       mail: '',
-      password: ''
+      password: '',
+      showUniqUser: ''
     };
   }
   handleEmailInput(e){
@@ -26,26 +32,38 @@ class RegisterContainer extends Component {
     this.setState({password: e.target.value});
   }
 
+  changeWrongFields(e){
+    e.target.style.borderColor = '#66afe9';
+  }
+
+  clearWrongInputs(){
+    clearInputs();
+    this.setState({mail: '', login: '', password: ''});
+  }
+
+  componentDidMount(){
+    setHomePageHeigth();
+  }
+
   handleAccountRegistration(){
     if(this.state.login && this.state.mail && this.state.password){
-      fetch(`/register/${this.state.mail}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      }).then(response => response.json())
-        .then(result => {
+      getCurrentUser(this.state.mail).then(result => {
           this.props.checkUniqueUser(result);
           if(this.props.userChecking.unique) {
-            fetch('/register', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              body: `mail=${this.state.mail}&login=${this.state.login}&password=${this.state.password}`
-            });
+            this.setState({showUniqUser: true});
+            createNewUser(this.state.login, this.state.mail, this.state.password);
+            setTimeout(() => {
+              browserHistory.push('/auth');
+            }, 400);
+          }
+          else {
+            this.setState({showUniqUser: false});
+            this.clearWrongInputs();
           }
         });
+    } else {
+      showEmptyInputs();
+      this.clearWrongInputs();
     }
   }
 
@@ -56,7 +74,9 @@ class RegisterContainer extends Component {
           handleLoginInput={this.handleLoginInput}
           handleEmailInput={this.handleEmailInput}
           handlePasswordInput={this.handlePasswordInput}
-          handleResponse={this.handleAccountRegistration}/>
+          handleResponse={this.handleAccountRegistration}
+          changeWrongFields={this.changeWrongFields}
+          showUniqUser={this.state.showUniqUser}/>
       </div>
     )
   }
