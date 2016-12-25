@@ -1,0 +1,61 @@
+.article-home-cols {
+  background-color: $border-btn;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.article-home {
+  background-color: $white;
+  border-radius: 35px;
+  padding-top: 25px;
+
+  .img-logo {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    display: block;
+    margin: auto;
+  }
+
+  .btn-login {
+    background-color: $main-color;
+    border: 2px solid $border-btn;
+    border-radius: 10px;
+    display: block;
+    height: 80px;
+    margin: auto;
+    margin-top: 25px;
+    outline: none;
+    width: 350px;
+
+    &:hover,
+    &:focus,
+    &:active:focus,
+    &:active:hover {
+      background-color: $main-hover-color;
+      border: 2px solid $border-btn;
+      outline: none;
+    }
+  }
+
+  .btn-login-top {
+    margin-top: 40px;
+  }
+
+  .link-home {
+    color: $white;
+    display: block;
+    height: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 20px;
+    text-transform: uppercase;
+    width: 100%;
+
+    &:hover,
+    &:focus,
+    &:visited {
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}

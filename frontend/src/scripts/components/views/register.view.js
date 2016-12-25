@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Button, Grid, Row, Col, Image} from 'react-bootstrap'
 
 export default class RegisterView extends Component {
   render(){
@@ -8,7 +9,7 @@ export default class RegisterView extends Component {
         <input onChange={this.props.handleLoginInput} type="text" placeholder="login"/>
         <input onChange={this.props.handleEmailInput} type="text" placeholder="email"/>
         <input onChange={this.props.handlePasswordInput} type="text" placeholder="password"/>
-        <button onClick={this.props.handleResponse}>Подтвердить</button>
+        <Button onClick={this.props.handleResponse}>Подтвердить</Button>
       </div>
     )
   }
