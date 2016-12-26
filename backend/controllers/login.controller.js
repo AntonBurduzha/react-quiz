@@ -27,6 +27,15 @@ function checkUniqueUser(req, res) {
   });
 }
 
+/*fetch('/secret', {
+ method: 'GET',
+ headers: {
+ 'Content-Type': 'application/x-www-form-urlencoded',
+ 'Authorization': `JWT ${this.props.tokenChecking.token}`
+ }
+ }).then(response => response.json())
+ .then(result => this.props.checkToken(result));*/
+
 function checkSecret(req, res) {
   let msg = {message: "Success! You can not see this without a token"};
   res.json(msg);
