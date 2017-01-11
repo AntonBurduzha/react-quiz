@@ -43,7 +43,7 @@ let config = {
     contentBase: './frontend/public',
     proxy: {
       '*': {
-        target: 'http://localhost:3000',
+        target: 'http://localhost:3000'
       }
     }
   }
@@ -53,7 +53,7 @@ config.plugins = config.plugins || [];
 if (prod) {
   config.plugins.push(new webpack.DefinePlugin({
     'process.env': {
-      'NODE_ENV': `"production"`
+      'NODE_ENV': "production"
     }
   }));
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
