@@ -52,6 +52,7 @@ class AuthContainer extends Component {
           case 'ok':
             this.setState({loginIsVerified: true, passIsVerified: true});
             localStorage.setItem('token', this.props.tokenChecking.token);
+            localStorage.setItem('nickname', this.state.login);
             setTimeout(() => {
               browserHistory.push('/userpage');
             }, 400);

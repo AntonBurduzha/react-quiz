@@ -1,0 +1,89 @@
+.header-user-page {
+  background-color: $border-btn;
+  border-bottom: 2px solid $white;
+  height: 66px;
+  padding: 8px 8px 0 8px;
+
+  .text-header-logo {
+    background-color: $white;
+    border-right: 2px solid $border-btn;
+    border-radius: 10px;
+    display: inline-block;
+    color: $border-btn;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    margin: 0;
+    padding: 7px 15px 10px 15px;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $border-btn;
+      color: $white;
+    }
+  }
+
+  .text-header-name {
+    background-color: $white;
+    border-left: 2px solid $border-btn;
+    border-right: 2px solid $border-btn;
+    border-radius: 10px;
+    display: inline-block;
+    height: 50px;
+    color: $border-btn;
+    font-size: 16px;
+    font-weight: bold;
+    float: right;
+    margin-right: 25px;
+    margin-bottom: 0;
+    padding: 15px;
+  }
+
+  .text-header-logout {
+    background-color: $white;
+    border-left: 2px solid $border-btn;
+    border-right: 2px solid $border-btn;
+    border-radius: 10px;
+    display: inline-block;
+    color: $border-btn;
+    font-size: 16px;
+    font-weight: bold;
+    height: 50px;
+    float: right;
+    margin-right: 25px;
+    margin-bottom: 0;
+    padding: 15px;
+
+    &:hover {
+      text-decoration: none;
+      background-color: $border-btn;
+      color: $white;
+    }
+  }
+}
+
+.article-categories {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 60%;
+
+  .article-category-current {
+    cursor: pointer;
+    padding: 0 10px 10px 10px;
+
+    &:hover {
+      box-shadow: 0 15px 20px #888888;
+    }
+  }
+
+  .text-category-current {
+    color: $border-btn;
+  }
+
+  .img-category {
+    width: 200px;
+    height: 200px;
+  }
+}
+
