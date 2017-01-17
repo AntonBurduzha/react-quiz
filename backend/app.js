@@ -15,6 +15,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect('localhost:27017/react-quiz');
 
 const loginControl = require('./controllers/login.controller');
+const userControl = require('./controllers/user.controller');
+
 
 const app = express();
 app.use(passport.initialize());
@@ -22,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../frontend/public')));
 
+app.use('/', userControl);
 app.use('/', loginControl);
 
 app.get('*', function(req, res) {

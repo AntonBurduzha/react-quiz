@@ -15,7 +15,7 @@ export default(
     <Route path='auth' component={AuthContainer} />
     <Route path='userpage' component={UserPageLayer}>
       <IndexRoute component={UserPageContainer}/>
-      <Route path='/category' component={CurrentCategoryContainer}/>
+      <Route path='category' component={CurrentCategoryContainer}/>
     </Route>
   </Router>
 );

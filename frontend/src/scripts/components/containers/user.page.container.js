@@ -11,11 +11,11 @@ export default class UserPageContainer extends Component {
   goToCurrentCategory(event){
     if(event.target.classList.contains('article-category-current')){
       localStorage.setItem('category', event.target.childNodes[0].textContent);
-      browserHistory.push('/category');
+      browserHistory.push('/userpage/category');
     }
     else if(event.target.parentNode.classList.contains('article-category-current')){
       localStorage.setItem('category', event.target.parentNode.childNodes[0].textContent);
-      browserHistory.push('/category');
+      browserHistory.push('/userpage/category');
     }
   }
 

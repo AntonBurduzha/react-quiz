@@ -1,11 +1,16 @@
-let UserData = require('../models/login.schema');
+let Quizes = require('../models/quiz.schema');
 
 const userService = {};
 
-userService.getUsers = getUsers;
+userService.getCurrentQuiz = getCurrentQuiz;
 
-function getUsers() {
-
+function getCurrentQuiz(req) {
+  let category = req.params.id;
+  return new Promise((resolve, reject) => {
+    Quizes.find({category: category}).then(quizData => {
+      resolve(quizData);
+    });
+  });
 }
 
 module.exports = userService;
