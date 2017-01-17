@@ -7,10 +7,6 @@ export default class CurrentCategoryContainer extends Component {
     super();
   }
 
-  componentDidMount(){
-    setUserPageHeigth();
-  }
-
   render(){
     return (
       <CurrentCategoryView/>

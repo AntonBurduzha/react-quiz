@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react'
 import {browserHistory} from 'react-router'
-import {setUserPageHeigth} from '../../api/common.api'
 import UserPageView from '../views/user.page.view'
 
 export default class UserPageContainer extends Component {
@@ -18,10 +17,6 @@ export default class UserPageContainer extends Component {
       localStorage.setItem('category', event.target.parentNode.childNodes[0].textContent);
       browserHistory.push('/category');
     }
-  }
-
-  componentDidMount(){
-    setUserPageHeigth();
   }
 
   render(){
