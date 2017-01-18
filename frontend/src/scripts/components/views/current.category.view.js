@@ -6,7 +6,7 @@ export default class CurrentCategoryView extends Component {
   render() {
     let quizList;
     quizList = this.props.quizList.map((item, i) => {
-      return <li key={i}>{item}</li>
+      return <li key={i}><Link to="/userpage/quiz">{item}</Link></li>
     });
     return (
       <Col mdOffset={2} md={8} className="article-home">
