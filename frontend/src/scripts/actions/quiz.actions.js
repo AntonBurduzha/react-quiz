@@ -7,6 +7,14 @@ const setQuizList = (dispatch, names) => {
   });
 };
 
+const setCurrentQuizData = (dispatch, currentQuizData) => {
+  dispatch( {
+    type: AppActionTypes.SET_CURRENT_QUIZ_DATA,
+    currentQuizData
+  });
+};
+
 export {
-  setQuizList
+  setQuizList,
+  setCurrentQuizData
 };

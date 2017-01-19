@@ -1,19 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {getCurrentQuiz} from '../../api/user.api'
+import {getCurrentCategoryQuizes} from '../../api/user.api'
 import {setQuizList} from '../../actions/quiz.actions'
 import CurrentCategoryView from '../views/current.category.view'
 
 class CurrentCategoryContainer extends Component {
   constructor() {
     super();
+    this.getQuizName = this.getQuizName.bind(this);
     this.state = {
       category: ''
     };
   }
 
   componentDidMount() {
-    getCurrentQuiz(localStorage.getItem('category')).then(result => {
+    getCurrentCategoryQuizes(localStorage.getItem('category')).then(result => {
       let quizList = [];
       result.forEach(item => {
         quizList.push(item.name);
@@ -22,10 +23,15 @@ class CurrentCategoryContainer extends Component {
     });
   }
 
+  getQuizName(event){
+    localStorage.setItem('quizName', event.target.textContent);
+  }
+
   render(){
     return (
       <CurrentCategoryView
-        quizList={this.props.quizList.names}/>
+        quizList={this.props.quizList.names}
+        getQuizName={this.getQuizName}/>
     );
   }
 }
