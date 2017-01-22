@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {getCurrentQuiz} from '../../api/user.api'
+import {getCurrentQuiz, postQuizResult} from '../../api/user.api'
 import {setCurrentQuizData} from '../../actions/quiz.actions'
 import QuizView from '../views/quiz.view'
-import update from 'immutability-helper';
+import {browserHistory} from 'react-router'
 
 class QuizContainer extends Component {
   constructor() {
@@ -14,7 +14,6 @@ class QuizContainer extends Component {
   componentDidMount(){
     getCurrentQuiz(localStorage.getItem('quizName')).then(result => {
       this.props.setCurrentQuizData(result);
-      console.log(this.props.quizData.currentQuizData);
     });
   }
 
@@ -34,7 +33,9 @@ class QuizContainer extends Component {
       }
     }
     trueAnswersPercent = (trueAnswersQuantity * 100 / this.props.quizData.currentQuizData.questions.length).toFixed(2);
-    //показать на следующей, сделать высоту страниц, подгружать результаты всех тестов, сделать задежку переходов, стили
+    postQuizResult(localStorage.getItem('nickname'), localStorage.getItem('quizName'), trueAnswersPercent).then(result => {
+      browserHistory.push('/userpage/result');
+    });
   }
 
   render(){

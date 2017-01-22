@@ -8,6 +8,7 @@ import UserPageContainer from './components/containers/user.page.container'
 import CurrentCategoryContainer from './components/containers/current.category.container'
 import UserPageLayer from './components/layers/user.page.layer'
 import QuizContainer from './components/containers/quiz.container'
+import ResultPageContainer from './components/containers/result.page.container'
 
 export default(
   <Router history={browserHistory}>
@@ -18,6 +19,7 @@ export default(
       <IndexRoute component={UserPageContainer}/>
       <Route path='category' component={CurrentCategoryContainer}/>
       <Route path='quiz' component={QuizContainer}/>
+      <Route path='result' component={ResultPageContainer}/>
     </Route>
   </Router>
 );

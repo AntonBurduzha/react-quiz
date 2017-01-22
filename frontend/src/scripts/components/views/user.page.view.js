@@ -3,6 +3,9 @@ import {Col, Image} from 'react-bootstrap'
 
 export default class UserPageView extends Component {
   render() {
+    let completedQuizes = this.props.completedQuizes.map((item, i) => {
+      return <li key={i}>{item.quizName} - {item.result}%</li>
+    });
     return (
       <Col mdOffset={2} md={8} className="article-home">
         <div>
@@ -23,10 +26,7 @@ export default class UserPageView extends Component {
         </div>
         <div>
           <h2 className="text-category text-center">Results</h2>
-          <ol>
-            <li>first</li>
-            <li>second</li>
-          </ol>
+          <ol>{completedQuizes}</ol>
         </div>
       </Col>
     )
