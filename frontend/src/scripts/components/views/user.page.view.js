@@ -7,7 +7,7 @@ export default class UserPageView extends Component {
       return <li key={i}>{item.quizName} - {item.result}%</li>
     });
     return (
-      <Col mdOffset={2} md={8} className="article-home">
+      <Col mdOffset={2} md={8} className="article-main-content">
         <div>
           <h2 className="text-category text-center">Categories</h2>
           <div className="article-categories">

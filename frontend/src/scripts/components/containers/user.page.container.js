@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router'
 import {getUserData } from '../../api/user.api'
 import UserPageView from '../views/user.page.view'
 
+
 export default class UserPageContainer extends Component {
   constructor() {
     super();

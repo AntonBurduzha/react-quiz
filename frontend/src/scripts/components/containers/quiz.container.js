@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import {getCurrentQuiz, postQuizResult} from '../../api/user.api'
+import {setContentMinHeigth} from '../../api/common.api'
 import {setCurrentQuizData} from '../../actions/quiz.actions'
 import QuizView from '../views/quiz.view'
 import {browserHistory} from 'react-router'
@@ -12,6 +13,7 @@ class QuizContainer extends Component {
   }
 
   componentDidMount(){
+    setContentMinHeigth();
     getCurrentQuiz(localStorage.getItem('quizName')).then(result => {
       this.props.setCurrentQuizData(result);
     });

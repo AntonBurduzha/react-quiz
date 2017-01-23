@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import {browserHistory, Link} from 'react-router'
-import {setUserPageHeigth} from '../../api/common.api'
+import {Link} from 'react-router'
+import {setUserPageHeigth, setContentMinHeigth} from '../../api/common.api'
 import { connect } from 'react-redux'
 import {setUserName} from '../../actions/user.actions'
 import {Grid, Row} from 'react-bootstrap'
@@ -13,6 +13,7 @@ class UserPageLayer extends Component {
   componentDidMount(){
     this.props.setUserName(localStorage.getItem('nickname'));
     setUserPageHeigth();
+    setContentMinHeigth();
   }
 
   render(){

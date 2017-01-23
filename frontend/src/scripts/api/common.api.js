@@ -23,9 +23,16 @@ const showEmptyInputs = () => {
   });
 };
 
+const setContentMinHeigth = () => {
+  let homePageArticle = document.querySelector('.article-home-cols');
+  let userContentArticle = document.querySelector('.article-main-content');
+  userContentArticle.style.minHeight = homePageArticle.offsetHeight - 40 + 'px';
+};
+
 export {
   setHomePageHeigth,
   clearInputs,
   showEmptyInputs,
-  setUserPageHeigth
+  setUserPageHeigth,
+  setContentMinHeigth
 }

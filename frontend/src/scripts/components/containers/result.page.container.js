@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import {getUserData } from '../../api/user.api'
+import {setContentMinHeigth} from '../../api/common.api'
 import ResultPageView from '../views/result.page.view'
 
 export default class ResultPageContainer extends Component {
@@ -12,6 +13,7 @@ export default class ResultPageContainer extends Component {
   }
 
   componentDidMount(){
+    setContentMinHeigth();
     getUserData(localStorage.getItem('nickname')).then(result => {
       this.setState({
         quizName: result.quizResults[result.quizResults.length - 1].quizName,

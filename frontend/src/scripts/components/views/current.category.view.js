@@ -9,7 +9,7 @@ export default class CurrentCategoryView extends Component {
       return <li key={i}><Link onClick={this.props.getQuizName} to="/userpage/quiz">{item}</Link></li>
     });
     return (
-      <Col mdOffset={2} md={8} className="article-home">
+      <Col mdOffset={2} md={8} className="article-main-content">
         <ol>{quizList}</ol>
       </Col>
     )

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import {getCurrentCategoryQuizes} from '../../api/user.api'
+import {setContentMinHeigth} from '../../api/common.api'
 import {setQuizList} from '../../actions/quiz.actions'
 import CurrentCategoryView from '../views/current.category.view'
 
@@ -14,6 +15,7 @@ class CurrentCategoryContainer extends Component {
   }
 
   componentDidMount() {
+    setContentMinHeigth();
     getCurrentCategoryQuizes(localStorage.getItem('category')).then(result => {
       let quizList = [];
       result.forEach(item => {

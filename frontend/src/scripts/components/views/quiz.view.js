@@ -21,7 +21,7 @@ export default class QuizView extends Component {
       </li>
     });
     return (
-      <Col mdOffset={2} md={8} className="article-home">
+      <Col mdOffset={2} md={8} className="article-main-content">
         <p>{this.props.quizData.name}</p>
         <ol>{quizData}</ol>
         <Button onClick={this.props.checkResult} className="btn-check-result">Проверить</Button>
