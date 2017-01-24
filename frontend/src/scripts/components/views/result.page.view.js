@@ -9,7 +9,7 @@ export default class ResultPageView extends Component {
         <h1>Результат</h1>
         <h3>{this.props.quizName}</h3>
         <h3>{this.props.result}%</h3>
-        <Link to="/userpage">Вернуться на страницу тестов</Link>
+        <Link onClick={this.props.goToUserPage}>Вернуться на страницу тестов</Link>
       </Col>
     )
   }

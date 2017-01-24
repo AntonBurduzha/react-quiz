@@ -8,6 +8,8 @@ import {Grid, Row} from 'react-bootstrap'
 class UserPageLayer extends Component {
   constructor() {
     super();
+    this.goToHomePage = this.goToHomePage.bind(this);
+    this.goToAuthPage = this.goToAuthPage.bind(this);
   }
 
   componentDidMount(){
@@ -16,12 +18,24 @@ class UserPageLayer extends Component {
     setContentMinHeigth();
   }
 
+  goToHomePage(){
+    setTimeout(() => {
+      browserHistory.push('/');
+    }, 300);
+  }
+
+  goToAuthPage(){
+    setTimeout(() => {
+      browserHistory.push('/auth');
+    }, 300);
+  }
+
   render(){
     return (
       <Grid>
         <Row className="header-user-page">
-          <Link to="/" className="text-header-logo">Quiz test App</Link>
-          <Link to="/auth" className="text-header-logout">Logout</Link>
+          <Link onClick={this.goToHomePage} className="text-header-logo">Quiz test App</Link>
+          <Link onClick={this.goToAuthPage} className="text-header-logout">Logout</Link>
           <p className="text-header-name">Hi, {this.props.userData.login}</p>
         </Row>
         <Row className="article-home-cols">

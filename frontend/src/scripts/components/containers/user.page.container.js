@@ -16,11 +16,15 @@ export default class UserPageContainer extends Component {
   goToCurrentCategory(event){
     if(event.target.classList.contains('article-category-current')){
       localStorage.setItem('category', event.target.childNodes[0].textContent);
-      browserHistory.push('/userpage/category');
+      setTimeout(() => {
+        browserHistory.push('/userpage/category');
+    }, 300);
     }
     else if(event.target.parentNode.classList.contains('article-category-current')){
       localStorage.setItem('category', event.target.parentNode.childNodes[0].textContent);
-      browserHistory.push('/userpage/category');
+      setTimeout(() => {
+        browserHistory.push('/userpage/category');
+      }, 300);
     }
   }
 

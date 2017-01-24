@@ -36,7 +36,9 @@ class QuizContainer extends Component {
     }
     trueAnswersPercent = (trueAnswersQuantity * 100 / this.props.quizData.currentQuizData.questions.length).toFixed(2);
     postQuizResult(localStorage.getItem('nickname'), localStorage.getItem('quizName'), trueAnswersPercent).then(result => {
-      browserHistory.push('/userpage/result');
+      setTimeout(() => {
+        browserHistory.push('/userpage/result');
+      }, 300);
     });
   }
 
