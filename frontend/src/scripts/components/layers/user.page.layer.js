@@ -4,6 +4,7 @@ import {setUserPageHeigth, setContentMinHeigth} from '../../api/common.api'
 import { connect } from 'react-redux'
 import {setUserName} from '../../actions/user.actions'
 import {Grid, Row} from 'react-bootstrap'
+import {browserHistory} from 'react-router'
 
 class UserPageLayer extends Component {
   constructor() {

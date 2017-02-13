@@ -11,34 +11,41 @@ let config = {
   },
   watch: true,
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loaders: ['babel', 'eslint']
+        loader: ['babel-loader', 'eslint-loader']
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss-loader', 'sass', 'sasslint']
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader', 'sasslint-loader']
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
+        use: [
+          { loader: "style-loader" },
+          { loader: "css-loader" }
+        ]
       },
       {
         test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loaders: ['file-loader', 'url-loader?limit=100000']
+        use: ['file-loader', 'url-loader?limit=100000']
       }
     ],
   },
-  postcss: [
-    autoprefixer({
-      browsers: ['last 2 versions']
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [
+          require('autoprefixer')({ browsers: ['last 2 versions'] })
+        ],
+        eslint: {
+          configFile: './.eslintrc'
+        }
+      }
     })
   ],
-  eslint: {
-    configFile: './.eslintrc'
-  },
   devServer: {
     contentBase: './frontend/public',
     proxy: {
@@ -61,8 +68,8 @@ if (prod) {
       warnings: false
     }
   }));
-  config.watch = null;
-  config.devtool = null;
+  config.watch = false;
+  config.devtool = false;
 } else {
   config.devtool = 'source-map';
 }
