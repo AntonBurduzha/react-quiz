@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import {browserHistory} from 'react-router'
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
-import {setHomePageHeigth, clearInputs, showEmptyInputs} from '../../api/common.api'
-import {getCurrentUser, createNewUser} from '../../api/login.api'
+import { setHomePageHeigth, clearInputs, showEmptyInputs } from '../../api/common.api'
+import { getCurrentUser, createNewUser } from '../../api/login.api'
 import { checkUniqueUser } from '../../actions/login.actions'
-import RegisterView from '../views/register.view'
+import { RegisterView } from '../views/register.view'
 
 class RegisterContainer extends Component {
   constructor(){
@@ -69,15 +69,13 @@ class RegisterContainer extends Component {
 
   render(){
     return (
-      <div>
-        <RegisterView
-          handleLoginInput={this.handleLoginInput}
-          handleEmailInput={this.handleEmailInput}
-          handlePasswordInput={this.handlePasswordInput}
-          handleResponse={this.handleAccountRegistration}
-          changeWrongFields={this.changeWrongFields}
-          showUniqUser={this.state.showUniqUser}/>
-      </div>
+      <RegisterView
+        handleLoginInput={this.handleLoginInput}
+        handleEmailInput={this.handleEmailInput}
+        handlePasswordInput={this.handlePasswordInput}
+        handleResponse={this.handleAccountRegistration}
+        changeWrongFields={this.changeWrongFields}
+        showUniqUser={this.state.showUniqUser}/>
     )
   }
 }

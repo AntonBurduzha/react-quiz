@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {browserHistory} from 'react-router'
+import { browserHistory } from 'react-router'
 import { setToken, checkToken } from '../../actions/login.actions'
-import {setHomePageHeigth, clearInputs, showEmptyInputs} from '../../api/common.api'
-import {verifyUserAuth} from '../../api/login.api'
-import AuthView from '../views/auth.view'
+import { setHomePageHeigth, clearInputs, showEmptyInputs } from '../../api/common.api'
+import { verifyUserAuth } from '../../api/login.api'
+import { AuthView } from '../views/auth.view'
 
 class AuthContainer extends Component {
   constructor(){
@@ -76,15 +76,13 @@ class AuthContainer extends Component {
 
   render(){
     return (
-      <div>
-        <AuthView
-          handleLoginInput={this.handleLoginInput}
-          handlePasswordInput={this.handlePasswordInput}
-          handleResponse={this.handleResponse}
-          changeWrongFields={this.changeWrongFields}
-          loginIsVirified={this.state.loginIsVerified}
-          passIsVirified={this.state.passIsVerified}/>
-      </div>
+      <AuthView
+        handleLoginInput={this.handleLoginInput}
+        handlePasswordInput={this.handlePasswordInput}
+        handleResponse={this.handleResponse}
+        changeWrongFields={this.changeWrongFields}
+        loginIsVerified={this.state.loginIsVerified}
+        passIsVerified={this.state.passIsVerified}/>
     )
   }
 }
