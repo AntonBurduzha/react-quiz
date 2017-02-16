@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import {Col, Image} from 'react-bootstrap'
 
-export default class UserPageView extends Component {
-  render() {
-    return (
-      <Col mdOffset={2} md={8} className="article-main-content">
-        <h2 className="text-category text-center">Categories</h2>
-        <div className="article-categories">
-          <CategoryItem
-            goToCurrentCategory={this.props.goToCurrentCategory}
-            theme="История"
-            src="http://imgdepo.com/id/i10170419"/>
-          <CategoryItem
-            goToCurrentCategory={this.props.goToCurrentCategory}
-            theme="Математика"
-            src="http://imgdepo.com/id/i10170418"/>
-        </div>
-        <h2 className="text-category text-center">Results</h2>
-        <CompletedQuizesList completedQuizes={this.props.completedQuizes}/>
-      </Col>
-    )
-  }
-}
+const UserPageView = (props) => {
+  return (
+    <Col mdOffset={2} md={8} className="article-main-content">
+      <h2 className="text-category text-center">Categories</h2>
+      <div className="article-categories">
+        <CategoryItem
+          goToCurrentCategory={props.goToCurrentCategory}
+          theme="История"
+          src="http://imgdepo.com/id/i10170419"/>
+        <CategoryItem
+          goToCurrentCategory={props.goToCurrentCategory}
+          theme="Математика"
+          src="http://imgdepo.com/id/i10170418"/>
+      </div>
+      <h2 className="text-category text-center">Results</h2>
+      <CompletedQuizesList completedQuizes={props.completedQuizes}/>
+    </Col>
+  )
+};
 
 const CompletedQuizesListItem = (props) => {
   return <li>{props.quizName} - {props.result}%</li>
@@ -42,3 +40,7 @@ const CategoryItem = (props) => {
     </div>
   );
 };
+
+export {
+  UserPageView
+}

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {browserHistory} from 'react-router'
-import {getCurrentCategoryQuizes} from '../../api/user.api'
-import {setContentMinHeigth} from '../../api/common.api'
-import {setQuizList} from '../../actions/quiz.actions'
-import CurrentCategoryView from '../views/current.category.view'
+import { browserHistory } from 'react-router'
+import { getCurrentCategoryQuizes } from '../../api/user.api'
+import { setContentMinHeigth } from '../../api/common.api'
+import { setQuizList } from '../../actions/quiz.actions'
+import { CurrentCategoryView } from '../views/current.category.view'
 
 class CurrentCategoryContainer extends Component {
   constructor() {

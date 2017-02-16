@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import {getUserData } from '../../api/user.api'
-import {setContentMinHeigth} from '../../api/common.api'
-import ResultPageView from '../views/result.page.view'
-import {browserHistory} from 'react-router'
+import { setContentMinHeigth } from '../../api/common.api'
+import { ResultPageView } from '../views/result.page.view'
+import { browserHistory } from 'react-router'
 
 export default class ResultPageContainer extends Component {
   constructor() {
