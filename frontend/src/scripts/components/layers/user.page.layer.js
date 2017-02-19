@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import {Link} from 'react-router'
 import {setUserPageHeigth, setContentMinHeigth} from '../../api/common.api'
 import { connect } from 'react-redux'
@@ -6,7 +6,7 @@ import {setUserName} from '../../actions/user.actions'
 import {Grid, Row} from 'react-bootstrap'
 import {browserHistory} from 'react-router'
 
-class UserPageLayer extends Component {
+class UserPageLayer extends PureComponent {
   constructor() {
     super();
     this.goToHomePage = this.goToHomePage.bind(this);

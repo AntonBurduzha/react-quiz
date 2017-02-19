@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {Link, browserHistory} from 'react-router'
 import {Button, Image} from 'react-bootstrap'
 import {setHomePageHeigth} from '../../api/common.api'
 import {AuthLayer} from '../layers/auth.layer'
 
-export default class HomeContainer extends Component {
+export default class HomeContainer extends PureComponent {
   constructor(){
     super();
     this.checkAccessToken = this.checkAccessToken.bind(this);
