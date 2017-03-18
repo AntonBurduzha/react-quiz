@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react'
 import {getUserData } from '../../api/user.api'
 import { setContentMinHeigth } from '../../api/common.api'
 import { ResultPageView } from '../views/result.page.view'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 
-export default class ResultPageContainer extends Component {
+class ResultPageContainer extends Component {
   constructor() {
     super();
     this.goToUserPage = this.goToUserPage.bind(this);
@@ -26,7 +26,7 @@ export default class ResultPageContainer extends Component {
 
   goToUserPage(){
     setTimeout(() => {
-      browserHistory.push('/userpage');
+      this.props.history.push('/userpage');
     }, 300);
   }
 
@@ -39,3 +39,5 @@ export default class ResultPageContainer extends Component {
     );
   }
 }
+
+export default withRouter(ResultPageContainer);

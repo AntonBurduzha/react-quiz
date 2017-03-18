@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import { setToken, checkToken } from '../../actions/login.actions'
 import { setHomePageHeigth, clearInputs, showEmptyInputs } from '../../api/common.api'
 import { verifyUserAuth } from '../../api/login.api'
@@ -54,7 +54,7 @@ class AuthContainer extends Component {
             localStorage.setItem('token', this.props.tokenChecking.token);
             localStorage.setItem('nickname', this.state.login);
             setTimeout(() => {
-              browserHistory.push('/userpage');
+              this.props.history.push('/userpage');
             }, 400);
             break;
           case 'no such user found':
@@ -102,4 +102,4 @@ const mapDispatchToProps = (dispatch) => ({
   checkToken: (tokenChecking) => checkToken(dispatch, tokenChecking)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthContainer));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router'
+import { Link } from 'react-router-dom'
 import {Col} from 'react-bootstrap'
 
 const CurrentCategoryView = (props) => {
@@ -11,7 +11,7 @@ const CurrentCategoryView = (props) => {
 };
 
 const CurrentCategoryListItem = (props) => {
-  return <li><Link onClick={props.getQuizName}>{props.name}</Link></li>
+  return <li><Link to="/userpage/quiz" onClick={props.getQuizName}>{props.name}</Link></li>
 };
 
 const CurrentCategoryList = (props) => {

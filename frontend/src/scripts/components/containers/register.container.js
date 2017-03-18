@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setHomePageHeigth, clearInputs, showEmptyInputs } from '../../api/common.api'
 import { getCurrentUser, createNewUser } from '../../api/login.api'
@@ -53,7 +53,7 @@ class RegisterContainer extends Component {
             this.setState({showUniqUser: true});
             createNewUser(this.state.login, this.state.mail, this.state.password);
             setTimeout(() => {
-              browserHistory.push('/auth');
+              this.props.history.push('/auth');
             }, 400);
           }
           else {
@@ -94,4 +94,4 @@ const mapDispatchToProps = (dispatch) => ({
   checkUniqueUser: (unique) => checkUniqueUser(dispatch, unique)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RegisterContainer));

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router'
+import { Link } from 'react-router-dom'
 import {Col} from 'react-bootstrap'
 
 const ResultPageView = (props) => {
@@ -8,7 +8,7 @@ const ResultPageView = (props) => {
       <h1>Результат</h1>
       <h3>{props.quizName}</h3>
       <h3>{props.result}%</h3>
-      <Link onClick={props.goToUserPage}>Вернуться на страницу тестов</Link>
+      <Link to="/userpage" onClick={props.goToUserPage}>Вернуться на страницу тестов</Link>
     </Col>
   );
 };

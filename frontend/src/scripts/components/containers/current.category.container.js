@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 import { getCurrentCategoryQuizes } from '../../api/user.api'
 import { setContentMinHeigth } from '../../api/common.api'
 import { setQuizList } from '../../actions/quiz.actions'
@@ -29,7 +29,7 @@ class CurrentCategoryContainer extends Component {
   getQuizName(event){
     localStorage.setItem('quizName', event.target.textContent);
     setTimeout(() => {
-      browserHistory.push('/userpage/quiz');
+      this.props.history.push('/userpage/quiz');
     }, 300);
   }
 
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch) => ({
   setQuizList: (names) => setQuizList(dispatch, names)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CurrentCategoryContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(CurrentCategoryContainer));

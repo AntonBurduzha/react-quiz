@@ -1,12 +1,16 @@
-import React, { PureComponent, PropTypes } from 'react'
-import {Link} from 'react-router'
+import React, { Component, PropTypes } from 'react'
 import {setUserPageHeigth, setContentMinHeigth} from '../../api/common.api'
 import { connect } from 'react-redux'
 import {setUserName} from '../../actions/user.actions'
 import {Grid, Row} from 'react-bootstrap'
-import {browserHistory} from 'react-router'
+import {withRouter, Link, Route } from 'react-router-dom'
 
-class UserPageLayer extends PureComponent {
+import UserPageContainer from '../containers/user.page.container'
+import CurrentCategoryContainer from '../containers/current.category.container'
+import QuizContainer from '../containers/quiz.container'
+import ResultPageContainer from '../containers/result.page.container'
+
+class UserPageLayer extends Component {
   constructor() {
     super();
     this.goToHomePage = this.goToHomePage.bind(this);
@@ -21,13 +25,14 @@ class UserPageLayer extends PureComponent {
 
   goToHomePage(){
     setTimeout(() => {
-      browserHistory.push('/');
+      this.props.history.push('/');
     }, 300);
   }
 
   goToAuthPage(){
+    console.log(this.props);
     setTimeout(() => {
-      browserHistory.push('/auth');
+      this.props.history.push('/auth');
     }, 300);
   }
 
@@ -35,12 +40,15 @@ class UserPageLayer extends PureComponent {
     return (
       <Grid>
         <Row className="header-user-page">
-          <Link onClick={this.goToHomePage} className="text-header-logo">Quiz test App</Link>
-          <Link onClick={this.goToAuthPage} className="text-header-logout">Logout</Link>
+          <Link to="/" onClick={this.goToHomePage} className="text-header-logo">Quiz test App</Link>
+          <Link to="/auth" onClick={this.goToAuthPage} className="text-header-logout">Logout</Link>
           <p className="text-header-name">Hi, {this.props.userData.login}</p>
         </Row>
         <Row className="article-home-cols">
-          {this.props.children}
+          <Route exact path='/userpage' component={UserPageContainer}/>
+          <Route path='/userpage/category' component={CurrentCategoryContainer} />
+          <Route path='/userpage/quiz' component={QuizContainer}/>
+          <Route path='/userpage/result' component={ResultPageContainer}/>
         </Row>
       </Grid>
     );
@@ -61,4 +69,4 @@ const mapDispatchToProps = (dispatch) => ({
   setUserName: (login) => setUserName(dispatch, login)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPageLayer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserPageLayer));

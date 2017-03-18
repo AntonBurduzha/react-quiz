@@ -4,7 +4,7 @@ import { getCurrentQuiz, postQuizResult } from '../../api/user.api'
 import { setContentMinHeigth } from '../../api/common.api'
 import { setCurrentQuizData } from '../../actions/quiz.actions'
 import { QuizView } from '../views/quiz.view'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router-dom'
 
 class QuizContainer extends Component {
   constructor() {
@@ -21,9 +21,9 @@ class QuizContainer extends Component {
 
   checkResult(){
     let clickedAnswers = document.querySelectorAll('.input-check');
-    let verifiedAnswers = [],
-      trueAnswersQuantity = 0,
-      trueAnswersPercent = 0;
+    let verifiedAnswers = [];
+    let trueAnswersQuantity = 0;
+    let trueAnswersPercent = 0;
     clickedAnswers.forEach(answer => {
       if(answer.checked){
         verifiedAnswers.push(answer.parentNode.textContent);
@@ -37,7 +37,7 @@ class QuizContainer extends Component {
     trueAnswersPercent = (trueAnswersQuantity * 100 / this.props.quizData.currentQuizData.questions.length).toFixed(2);
     postQuizResult(localStorage.getItem('nickname'), localStorage.getItem('quizName'), trueAnswersPercent).then(result => {
       setTimeout(() => {
-        browserHistory.push('/userpage/result');
+        this.props.history.push('/userpage/result');
       }, 300);
     });
   }
@@ -65,4 +65,4 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentQuizData: (currentQuizData) => setCurrentQuizData(dispatch, currentQuizData)
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuizContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(QuizContainer));

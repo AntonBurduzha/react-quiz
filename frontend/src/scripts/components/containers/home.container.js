@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
-import {Link, browserHistory} from 'react-router'
+import {Link, withRouter} from 'react-router-dom'
 import {Button, Image} from 'react-bootstrap'
 import {setHomePageHeigth} from '../../api/common.api'
 import {AuthLayer} from '../layers/auth.layer'
 
-export default class HomeContainer extends PureComponent {
+class HomeContainer extends PureComponent {
   constructor(){
     super();
     this.checkAccessToken = this.checkAccessToken.bind(this);
@@ -19,19 +19,19 @@ export default class HomeContainer extends PureComponent {
     const userAccessToken = localStorage.getItem('token');
     if(userAccessToken !== null){
       setTimeout(() => {
-        browserHistory.push('/userpage');
+        this.props.history.push('/userpage');
       }, 300);
     }
     else{
       setTimeout(() => {
-        browserHistory.push('/auth');
+        this.props.history.push('/auth');
       }, 300);
     }
   }
 
   goToRegisterPage() {
     setTimeout(() => {
-      browserHistory.push('/register');
+      this.props.history.push('/register');
     }, 300);
   }
 
@@ -43,9 +43,11 @@ export default class HomeContainer extends PureComponent {
           onClick={this.checkAccessToken}
           className="btn-login btn-login-top">Войти</Button>
         <Button className="btn-login">
-          <Link className="link-home" onClick={this.goToRegisterPage}>Регистрация</Link>
+          <Link to="/register" className="link-home" onClick={this.goToRegisterPage}>Регистрация</Link>
         </Button>
       </AuthLayer>
     );
   }
 }
+
+export default withRouter(HomeContainer);

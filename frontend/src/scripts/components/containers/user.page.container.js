@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory } from 'react-router'
+import { withRouter } from 'react-router'
 import { getUserData } from '../../api/user.api'
 import { UserPageView } from '../views/user.page.view'
 import { setContentMinHeigth } from '../../api/common.api'
 
-export default class UserPageContainer extends Component {
+class UserPageContainer extends Component {
   constructor() {
     super();
     this.goToCurrentCategory = this.goToCurrentCategory.bind(this);
@@ -17,13 +17,13 @@ export default class UserPageContainer extends Component {
     if(event.target.classList.contains('article-category-current')){
       localStorage.setItem('category', event.target.childNodes[0].textContent);
       setTimeout(() => {
-        browserHistory.push('/userpage/category');
+        this.props.history.push('/userpage/category');
     }, 300);
     }
     else if(event.target.parentNode.classList.contains('article-category-current')){
       localStorage.setItem('category', event.target.parentNode.childNodes[0].textContent);
       setTimeout(() => {
-        browserHistory.push('/userpage/category');
+        this.props.history.push('/userpage/category');
       }, 300);
     }
   }
@@ -43,3 +43,5 @@ export default class UserPageContainer extends Component {
     );
   }
 }
+
+export default withRouter(UserPageContainer);
